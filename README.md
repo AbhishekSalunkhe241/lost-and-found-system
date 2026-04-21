@@ -39,10 +39,10 @@ A full-stack web application to help users report, search, and manage lost and f
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home](screenshots/home.jpeg)
+![Home](Screenshots/Home.jpeg)
 
 ### 🔐 Login
-![Login](screenshots/login.jpeg)
+![Login](Screenshots/Login.jpeg)
 
 ### ❗ Lost Items
 ![Lost](Screenshots/Lost.jpeg)
