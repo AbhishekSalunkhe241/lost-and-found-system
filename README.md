@@ -35,11 +35,23 @@ A full-stack web application to help users report, search, and manage lost and f
 - Multer (Image Upload)
 - JWT (Authentication)
 - Bcrypt (Password Hashing)
+- 
 ## 📸 Screenshots
 
-![Home](screenshots/home.png)
-![Login](screenshots/login.png)
-![Dashboard](screenshots/dashboard.png)
+### 🏠 Home Page
+![Home](screenshots/home.jpeg)
+
+### 🔐 Login
+![Login](screenshots/login.jpeg)
+
+### ❗ Lost Items
+![Lost](Screenshots/Lost.jpeg)
+
+### 🔍 Found Items
+![Found](Screenshots/Found.jpeg)
+
+### 🛠️ Admin Panel
+![Admin](Screenshots/Admin.jpeg)
 ---
 
 ## 📂 Project Structure
