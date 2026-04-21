@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* SEARCH BAR */
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.search-box {
+    position: relative;
+    width: 280px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 40px 10px 12px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #8800ff;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: gray;
+}
+
+.search-icon:hover {
+    color: #8800ff;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #2e1065;
+    color: white;
+}
+
+/* IMAGE */
+td img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+td img:hover {
+    transform: scale(1.2);
+}
+
+/* BUTTON */
+.action-btn {
+    padding: 6px 10px;
+    margin: 2px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    background: #8800ff;
+    color: white;
+}
+
+.action-btn:hover {
+    background: #6a00cc;
+}
+
+/* EMPTY MSG */
+.empty-msg {
+    text-align: center;
+    color: gray;
+    margin: 10px;
+}
+
+/* NOT FOUND */
+.not-found {
+    text-align: center;
+    color: red;
+    display: none;
+    margin-top: 10px;
+}
+
+/* BACK */
+.back-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: #6f00ff;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.back-home:hover {
+    background: #8400ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Admin Dashboard</h1>
+</header>
+
+<div class="admin-container">
+
+<!-- SEARCH -->
+<div class="search-wrapper">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search items...">
+        <i class="fa-solid fa-magnifying-glass search-icon" onclick="searchItems()"></i>
+    </div>
+</div>
+
+<div id="notFound" class="not-found">❌ Not Found</div>
+
+<!-- LOST TABLE -->
+<h2>Lost Items</h2>
+<table>
+<thead>
+<tr>
+    <th>Image</th>
+    <th>Item</th>
+    <th>Category</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Actions</th>
+</tr>
+</thead>
+<tbody id="lostTable"></tbody>
+</table>
+<div id="lostEmpty" class="empty-msg"></div>
+
+<br>
+
+<!-- FOUND TABLE -->
+<h2>Found Items</h2>
+<table>
+<thead>
+<tr>
+    <th>Image</th>
+    <th>Item</th>
+    <th>Category</th>
+    <th>Date</th>
+    <th>Actions</th>
+</tr>
+</thead>
+<tbody id="foundTable"></tbody>
+</table>
+<div id="foundEmpty" class="empty-msg"></div>
+
+<div style="text-align:center;">
+    <a href="index.html" class="back-home">Back to Home</a>
+</div>
+
+</div>
+
+<!-- IMAGE MODAL (ZOOM PREVIEW) -->
+<div id="imgModal" style="
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.8);
+justify-content:center;
+align-items:center;
+">
+    <img id="modalImg" style="max-width:80%; max-height:80%; border-radius:10px;">
+</div>
+
+<script>
+
+const API = "http://localhost:3000";
+
+let lostData = [];
+let foundData = [];
+
+/* IMAGE */
+function getImage(photo) {
+    return photo ? `${API}/uploads/${photo}` : "https://via.placeholder.com/60";
+}
+
+/* ZOOM IMAGE */
+function openImage(src) {
+    document.getElementById("imgModal").style.display = "flex";
+    document.getElementById("modalImg").src = src;
+}
+
+document.getElementById("imgModal").onclick = () => {
+    document.getElementById("imgModal").style.display = "none";
+};
+
+/* RENDER LOST */
+function renderLost(data) {
+    const table = document.getElementById("lostTable");
+    const empty = document.getElementById("lostEmpty");
+
+    table.innerHTML = "";
+
+    if (data.length === 0) {
+        empty.innerText = "No Lost Items";
+        return;
+    }
+
+    empty.innerText = "";
+
+    data.forEach(item => {
+        table.innerHTML += `
+        <tr>
+            <td><img src="${getImage(item.photo)}" onclick="openImage('${getImage(item.photo)}')"></td>
+            <td>${item.name}</td>
+            <td>${item.category}</td>
+            <td>${new Date(item.date).toLocaleDateString()}</td>
+            <td>${item.status}</td>
+            <td>
+                <button class="action-btn" onclick="markFound('${item._id}')">Mark Found</button>
+                <button class="action-btn" onclick="deleteLost('${item._id}')">Delete</button>
+            </td>
+        </tr>`;
+    });
+}
+
+/* RENDER FOUND */
+function renderFound(data) {
+    const table = document.getElementById("foundTable");
+    const empty = document.getElementById("foundEmpty");
+
+    table.innerHTML = "";
+
+    if (data.length === 0) {
+        empty.innerText = "No Found Items";
+        return;
+    }
+
+    empty.innerText = "";
+
+    data.forEach(item => {
+        table.innerHTML += `
+        <tr>
+            <td><img src="${getImage(item.photo)}" onclick="openImage('${getImage(item.photo)}')"></td>
+            <td>${item.name}</td>
+            <td>${item.category}</td>
+            <td>${new Date(item.date).toLocaleDateString()}</td>
+            <td>
+                <button class="action-btn" onclick="deleteFound('${item._id}')">Delete</button>
+            </td>
+        </tr>`;
+    });
+}
+
+/* LOAD DATA */
+async function loadData() {
+    const lostRes = await fetch(`${API}/lost`);
+    lostData = await lostRes.json();
+
+    const foundRes = await fetch(`${API}/found`);
+    foundData = await foundRes.json();
+
+    renderLost(lostData);
+    renderFound(foundData);
+}
+
+/* SEARCH */
+function searchItems() {
+    const val = document.getElementById("searchInput").value.toLowerCase();
+
+    const filteredLost = lostData.filter(i =>
+        i.name.toLowerCase().includes(val) ||
+        i.category.toLowerCase().includes(val)
+    );
+
+    const filteredFound = foundData.filter(i =>
+        i.name.toLowerCase().includes(val) ||
+        i.category.toLowerCase().includes(val)
+    );
+
+    renderLost(filteredLost);
+    renderFound(filteredFound);
+
+    document.getElementById("notFound").style.display =
+        (filteredLost.length === 0 && filteredFound.length === 0) ? "block" : "none";
+}
+
+/* ACTIONS */
+async function markFound(id) {
+    await fetch(`${API}/lost/markfound/${id}`, { method: "POST" });
+    loadData();
+}
+
+async function deleteLost(id) {
+    await fetch(`${API}/lost/${id}`, { method: "DELETE" });
+    loadData();
+}
+
+async function deleteFound(id) {
+    await fetch(`${API}/found/${id}`, { method: "DELETE" });
+    loadData();
+}
+
+/* ENTER KEY SEARCH */
+document.getElementById("searchInput").addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        searchItems();
+    }
+});
+
+/* INIT */
+loadData();
+
+</script>
+
+</body>
+</html>

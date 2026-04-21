@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Success</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.spinner {
+    margin: 20px auto;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255,255,255,0.2);
+    border-top: 4px solid #8800ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+#count {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8800ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container fade-in" style="text-align:center; margin-top:100px;">
+
+    <h1>✔ Item Reported Successfully</h1>
+
+    <div class="spinner"></div>
+
+    <p>
+        Redirecting to Admin Panel in 
+        <span id="count">3</span> seconds...
+    </p>
+
+    <br>
+
+    <a href="admin.html" class="btn">Go to Admin Now</a>
+    <a href="index.html" class="btn">Back to Home</a>
+
+</div>
+
+<script>
+let count = 3;
+const counter = document.getElementById("count");
+
+const interval = setInterval(() => {
+    count--;
+    counter.textContent = count;
+
+    if (count === 0) {
+        clearInterval(interval);
+        window.location.href = "admin.html";
+    }
+}, 1000);
+</script>
+
+</body>
+</html>

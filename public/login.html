@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Authentication</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.hide { display: none; }
+
+.auth-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.auth-toggle button {
+    width: 120px;
+}
+
+.auth-toggle button.active{
+    background:#8800ff;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Lost & Found System</h1>
+    <p>Login or Create Account</p>
+</header>
+
+<div class="form-container">
+
+    <!-- TOGGLE BUTTONS (FIXED) -->
+    <div class="auth-toggle">
+        <button id="loginBtn" onclick="showLogin()">Login</button>
+        <button id="registerBtn" class="active" onclick="showRegister()">Register</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginForm" class="hide">
+        <input type="email" id="loginEmail" placeholder="Email">
+
+        <div class="password-box">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <label><input type="checkbox" onclick="togglePassword('loginPassword')"> Show Password</label>
+        </div>
+
+        <div class="button-stack">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="registerForm">
+        <input type="text" id="name" placeholder="Name">
+        <input type="email" id="registerEmail" placeholder="Email">
+
+        <div class="password-box">
+            <input type="password" id="registerPassword" placeholder="Password">
+            <label><input type="checkbox" onclick="togglePassword('registerPassword')"> Show Password</label>
+        </div>
+
+        <div class="button-stack">
+            <button onclick="register()">Register</button>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Lost & Found System</p>
+</footer>
+
+<script>
+const API = "http://localhost:3000";
+
+/* DEFAULT → REGISTER FIRST */
+window.onload = function () {
+    showRegister();
+};
+
+/* SWITCH LOGIN */
+function showLogin() {
+    document.getElementById("loginForm").classList.remove("hide");
+    document.getElementById("registerForm").classList.add("hide");
+
+    document.getElementById("loginBtn").classList.add("active");
+    document.getElementById("registerBtn").classList.remove("active");
+}
+
+/* SWITCH REGISTER */
+function showRegister() {
+    document.getElementById("registerForm").classList.remove("hide");
+    document.getElementById("loginForm").classList.add("hide");
+
+    document.getElementById("registerBtn").classList.add("active");
+    document.getElementById("loginBtn").classList.remove("active");
+}
+
+/* PASSWORD TOGGLE */
+function togglePassword(id) {
+    const input = document.getElementById(id);
+    input.type = input.type === "password" ? "text" : "password";
+}
+
+/* REGISTER */
+async function register() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
+
+    const res = await fetch(`${API}/register`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ name, email, password })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+        alert("Registration successful ✔ Now login");
+        showLogin();
+    } else {
+        alert(data.message);
+    }
+}
+
+/* LOGIN */
+async function login() {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const res = await fetch(`${API}/login`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+        localStorage.setItem("token", data.token);
+        alert("Login successful");
+        window.location.href = "index.html";
+    } else {
+        alert(data.message);
+    }
+}
+</script>
+
+</body>
+</html>
