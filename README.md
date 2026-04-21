@@ -69,11 +69,11 @@ lost-and-found-system/
 
 ## 📸 screenshots
 
-![home](screenshots/home.jpeg)
-![login](screenshots/login.jpeg)
-![lost](screenshots/lost.jpeg)
-![found](screenshots/found.jpeg)
-![admin](screenshots/admin.jpeg)
+![home](Screenshots/home.jpeg)
+![login](Screenshots/login.jpeg)
+![lost](Screenshots/lost.jpeg)
+![found](Screenshots/found.jpeg)
+![admin](Screenshots/admin.jpeg)
 ---
 
 ## ⚙️ Installation & Setup
