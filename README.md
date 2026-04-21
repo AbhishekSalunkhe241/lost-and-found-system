@@ -66,13 +66,12 @@ lost-and-found-system/
 ```
 
 ---
-
 ## 📸 Screenshots
 
 ### 🏠 Home Page
 ![Home](Screenshots/Home.jpeg)
 
-### 🔐 Login Page
+### 🔐 Login
 ![Login](Screenshots/Login.jpeg)
 
 ### ❗ Lost Items
