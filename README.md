@@ -57,7 +57,7 @@ lost-and-found-system/
 │   ├── Found.jpeg
 │   └── Admin.jpeg
 │
-├── server.js                # Backend logic
+├── server.js                # Backend logic 
 ├── package.json,package-lock.json # Dependencies
 ├── .gitignore               # Ignored files (node_modules, etc.)
 └── README.md                # Documentation
