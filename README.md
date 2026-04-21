@@ -51,11 +51,11 @@ lost-and-found-system/
 ├── uploads/                 # Uploaded images
 │
 ├── Screenshots/             # README images
-│   ├── Home.jpeg
-│   ├── Login.jpeg
-│   ├── Lost.jpeg
-│   ├── Found.jpeg
-│   └── Admin.jpeg
+│   ├── home.jpeg
+│   ├── login.jpeg
+│   ├── lost.jpeg
+│   ├── found.jpeg
+│   └── admin.jpeg
 │
 ├── server.js                # Backend logic 
 ├── package.json,package-lock.json # Dependencies
@@ -67,14 +67,7 @@ lost-and-found-system/
 
 ---
 
-## 📸 Screenshots
 
-![Home](Screenshots/home.jpeg)
-![Login](Screenshots/login.jpeg)
-![Lost](Screenshots/lost.jpeg)
-![Found](Screenshots/found.jpeg)
-![Admin](Screenshots/admin.jpeg)
----
 
 ## ⚙️ Installation & Setup
 
