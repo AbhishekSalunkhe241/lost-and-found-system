@@ -1,67 +1,145 @@
 # 🔍 Lost & Found Management System
 
-A full-stack web application to help users report, search, and manage lost and found items efficiently.
+A web-based application designed to help users report, search, and recover lost items efficiently. This system provides a simple and user-friendly interface for managing lost and found records.
 
 ---
 
-## 📌 Features
+## 🚀 Features
 
-- 🔐 User Authentication (Register/Login)
-- 📤 Report Lost Items with Image Upload
-- 📥 Report Found Items
-- 🖼️ Image Storage using Uploads Folder
-- 🔄 Move Lost Items → Found
-- ❌ Delete Items with Image Cleanup
-- 📊 Admin Dashboard (if implemented)
-- 🌐 REST API Integration
+* 👤 User Registration & Login (Authentication)
+* 📦 Report Lost Items
+* 🔍 Report Found Items
+* 📋 View All Listings
+* 🛠️ Admin Panel for Management
+* 📸 Image Upload Support
+* 🌙 Clean UI (with Dark/Light mode if implemented)
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Technologies Used
 
-### Frontend:
-- HTML
-- CSS
-- JavaScript
+| Technology  | Purpose          |
+| ----------- | ---------------- |
+| Node.js     | Backend runtime  |
+| Express.js  | Server framework |
+| MongoDB     | Database         |
+| Mongoose    | ODM              |
+| HTML/CSS/JS | Frontend         |
+| Multer      | File uploads     |
+| JWT         | Authentication   |
 
-### Backend:
-- Node.js
-- Express.js
-
-### Database:
-- MongoDB
-
-### Other Tools:
-- Multer (Image Upload)
-- JWT (Authentication)
-- Bcrypt (Password Hashing)
-- 
-## 📸 Screenshots
-
-### 🏠 Home Page
-![Home](Screenshots/Home.jpeg)
-
-### 🔐 Login
-![Login](Screenshots/Login.jpeg)
-
-### ❗ Lost Items
-![Lost](Screenshots/Lost.jpeg)
-
-### 🔍 Found Items
-![Found](Screenshots/Found.jpeg)
-
-### 🛠️ Admin Panel
-![Admin](Screenshots/Admin.jpeg)
 ---
 
 ## 📂 Project Structure
-Mini Project/
+
+lost-and-found-system/
 │
 ├── models/
-│ └── User.js
-├── public/
-├── uploads/
-├── views/
-├── server.js
-├── package.json
-└── README.md
+│   └── User.js
+│
+├── public/                  # Frontend static files
+│   ├── index.html
+│   ├── login.html
+│   ├── lost.html
+│   ├── found.html
+│   ├── success.html
+│   └── style.css
+│
+├── views/                   # EJS templates
+│   └── admin.ejs            # Admin panel UI
+│
+├── uploads/                 # Uploaded images
+│
+├── Screenshots/             # README images
+│   ├── Home.jpeg
+│   ├── Login.jpeg
+│   ├── Lost.jpeg
+│   ├── Found.jpeg
+│   └── Admin.jpeg
+│
+├── server.js                # Backend logic
+├── package.json,package-lock.json # Dependencies
+├── .gitignore               # Ignored files (node_modules, etc.)
+└── README.md                # Documentation
+
+
+```
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+![Home](Screenshots/Home.jpeg)
+
+### 🔐 Login Page
+
+![Login](Screenshots/Login.jpeg)
+
+### ❗ Lost Items
+
+![Lost](Screenshots/Lost.jpeg)
+
+### 🔍 Found Items
+
+![Found](Screenshots/Found.jpeg)
+
+### 🛠️ Admin Panel
+
+![Admin](Screenshots/Admin.jpeg)
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the repository
+
+```
+git clone https://github.com/AbhishekSalunkhe241/lost-and-found-system.git
+```
+
+### 2️⃣ Navigate to project folder
+
+```
+cd lost-and-found-system
+```
+
+### 3️⃣ Install dependencies
+
+```
+npm install
+```
+
+### 4️⃣ Run the server
+
+```
+node server.js
+```
+
+### 5️⃣ Open in browser
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📌 Future Scope
+
+* 📱 Mobile App Integration
+* 🔔 Real-time Notifications
+* 📍 Location-based item tracking
+* 🤖 AI-based item matching
+
+---
+
+## 👨‍💻 Author
+
+**Abhishek Salunkhe**
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
