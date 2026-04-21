@@ -66,23 +66,14 @@ lost-and-found-system/
 ```
 
 ---
+
 ## 📸 Screenshots
 
-### 🏠 Home Page
 ![Home](screenshots/Home.jpeg)
-
-### 🔐 Login
 ![Login](screenshots/Login.jpeg)
-
-### ❗ Lost Items
 ![Lost](screenshots/Lost.jpeg)
-
-### 🔍 Found Items
 ![Found](screenshots/Found.jpeg)
-
-### 🛠️ Admin Panel
 ![Admin](screenshots/Admin.jpeg)
-
 ---
 
 ## ⚙️ Installation & Setup
