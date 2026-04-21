@@ -70,23 +70,18 @@ lost-and-found-system/
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-
 ![Home](Screenshots/Home.jpeg)
 
 ### 🔐 Login Page
-
 ![Login](Screenshots/Login.jpeg)
 
 ### ❗ Lost Items
-
 ![Lost](Screenshots/Lost.jpeg)
 
 ### 🔍 Found Items
-
 ![Found](Screenshots/Found.jpeg)
 
 ### 🛠️ Admin Panel
-
 ![Admin](Screenshots/Admin.jpeg)
 
 ---
