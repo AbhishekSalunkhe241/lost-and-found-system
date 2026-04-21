@@ -67,7 +67,7 @@ lost-and-found-system/
 
 ---
 
-## 📸 screenshots
+## 📸 Screenshots
 
 ![home](Screenshots/home.jpeg)
 ![login](Screenshots/login.jpeg)
