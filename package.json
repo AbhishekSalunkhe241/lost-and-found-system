@@ -1,23 +1,37 @@
 {
-  "name": "mini-project",
+  "name": "lost-and-found-system",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "description": "A web-based application designed to help users report, search, and recover lost items efficiently.",
+  "main": "server.js",
   "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "lost-and-found",
+    "express",
+    "mongodb",
+    "nodejs"
+  ],
+  "author": "Abhishek Salunkhe",
+  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
-    "cors": "^2.8.6",
-    "ejs": "^5.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "ejs": "^3.1.10",
     "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.4.1",
-    "multer": "^2.1.1"
-  }
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.18.0",
+    "multer": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbhishekSalunkhe241/lost-and-found-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AbhishekSalunkhe241/lost-and-found-system/issues"
+  },
+  "homepage": "https://github.com/AbhishekSalunkhe241/lost-and-found-system#readme"
 }
